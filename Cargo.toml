@@ -1,0 +1,30 @@
+[package]
+name = "cnnt"
+version = "0.1.0"
+edition = "2021"
+description = "market parse"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rtsc = { git = "https://github.com/templexxx/rtsc" }
+
+
+[build-dependencies]
+bindgen = { version = "*", optional = true }
+cc = "1.0"
+
+[profile.release]
+lto = "fat"
+opt-level = 3
+codegen-units = 1
+debug-assertions = false
+overflow-checks = false
+panic = "abort"
+debug = false
+
+[features]
+default = ["fifo", "debug"]
+rem_mul = []
+fpga = []
+fifo = []
+debug = ["bindgen"]
